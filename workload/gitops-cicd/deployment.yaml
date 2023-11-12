@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitops-cicd
+  labels:
+    kubernetes.seismic.com/team: cicd
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: gitops-cicd
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: gitops-cicd
+    spec:
+      containers:
+        - name: gitops-cicd
+          envFrom:
+            - secretRef:
+                name: gitops-cicd
+          image: gitops-cicd:2c8e66810f2c1683197167fdee94b679359135febb083a01fe3da0f7ca435de72d359591e2be40e9626cd9673f22841a5431fa5a6bc1626713fe3551e0c4ec90bb1327fa492f0baa26a480265c882cf649bc0989d7a06e4bbcd72a04d819da5186c2a2120f06c05aaf5cd099b170a22c97b3cf38a7a9cedf54132c27ebbd1bbd3612475972d06cb1600c900c914a1c0d585fe9560f1acdc1b0d2305263bfeb2e78bb8fbf01fdb4638d18a62cb5bda3ee3ff5f87e3ae8329cd36af828d5ea34f316dc9cf3a318deace287a706ec174dd8e89212d7e80c0e22aecb21df95102530026e6547096c33e1205cbfe97c430e544a13209a9e10998473e04310a7c01de3d899cade1.0.0
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /echo
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 3
+          ports:
+            - containerPort: 3141
+              name: http
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /echo
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 3
+          resources:
+            requests:
+              cpu: 10m
+              memory: 200Mi
+            limits:
+              cpu: 100m
+              memory: 600Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsUser: 1000
+      dnsConfig:
+        options:
+          - name: single-request-reopen
+      serviceAccountName: gitops-cicd
