@@ -25,7 +25,7 @@ spec:
           envFrom:
             - secretRef:
                 name: gitops-cicd
-          image: gitops-cicd:08418f9f92-60
+          image: gitops-cicd:prod-0ba6eb26dc-3
           livenessProbe:
             failureThreshold: 3
             httpGet:
