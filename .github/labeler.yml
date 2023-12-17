@@ -29,6 +29,10 @@ breaking-change:
 bug:
     - head-branch: ['^bug', 'bug']
 
+# Add 'chore' label to any PR where the head branch name starts with 'chore' or has a 'chore' section in the name
+chore:
+    - head-branch: ['^chore', 'chore']
+
  # Add 'release' label to any PR that is opened against the `main` branch
 release:
  - base-branch: 'main'
