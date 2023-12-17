@@ -19,7 +19,7 @@ feature:
  - head-branch: ['^feature', 'feature']
 
 enhancement:
-  - head-branch: ['^feature', 'featur# Add 'breaking-change' label to any PR where the head branch name starts with 'break' or has a 'break-change' section in the name
+  - head-branch: ['^feature', 'feature']
 
 # Add 'breaking-change' label to any PR where the head branch name starts with 'break' or has a 'break-change' section in the name
 breaking-change:
