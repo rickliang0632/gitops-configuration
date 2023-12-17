@@ -13,7 +13,7 @@
 Documentation:
 -any:
   - changed-files:
-    - any-glob-to-any-file: '**/*.md'
+    - any-glob-to-any-file: '*.md'
     - any-glob-to-any-file: 'doc/**'
 
 # Add 'feature' label to any PR where the head branch name starts with `feature` or has a `feature` section in the name
