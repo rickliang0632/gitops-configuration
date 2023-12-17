@@ -21,7 +21,8 @@ changelog:
         - bugfix
         - bug
     - title: Maintenance 🧰
-      label: 'chore'
+      label:
+        - chore
     - title: Other Changes
       labels:
         - "*"
