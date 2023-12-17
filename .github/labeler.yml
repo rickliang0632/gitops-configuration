@@ -11,17 +11,19 @@ AnyChange:
 
 # Add 'Documentation' label to any changes within 'docs' folder or any subfolders
 Documentation:
-- any:
-  - changed-files:
-    - any-glob-to-any-file: docs/**
-    - any-glob-to-any-file: '**/*.md'
+- changed-files:
+  - any-glob-to-any-file: docs/**
 
 # Add 'feature' label to any PR where the head branch name starts with `feature` or has a `feature` section in the name
 feature:
  - head-branch: ['^feature', 'feature']
 
 enhancement:
-  - head-branch: ['^feature', 'feature']
+  - head-branch: ['^feature', 'featur# Add 'breaking-change' label to any PR where the head branch name starts with 'break' or has a 'break-change' section in the name
+
+# Add 'breaking-change' label to any PR where the head branch name starts with 'break' or has a 'break-change' section in the name
+breaking-change:
+ - head-branch: ['^break', 'break-change']
 
 # Add 'bug' label to any PR where the head branch name starts with 'bug' or has a 'bug' section in the name
 bug:
